@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/perfil" />
+    <item
+        android:id="@+id/adoptar"
+        android:icon="@drawable/ic_adoptar"
+        android:title="@string/adoptar" />
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/ic_add"
+        android:title="@string/publicar"/>
+    <item
+        android:id="@+id/alerta"
+        android:icon="@drawable/ic_alert"
+        android:title="@string/favoritos" />
+    <item
+        android:id="@+id/cruzar"
+        android:icon="@drawable/ic_hearth"
+        android:title="@string/hearth" />
+</menu>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Estilo para los EditText -->
+    <style name="EditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:background">@color/colorTextInput</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:padding">16dp</item>
+        <!-- Otros atributos que desees -->
+    </style>
+
+    <!-- Estilo para el botón de inicio de sesión -->
+    <style name="ButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorLinkText</item>
+        <item name="android:textColor">@color/colorButtonTextColor</item>
+        <item name="android:textSize">18sp</item>
+        <!-- Otros atributos que desees -->
+    </style>
+
+</resources>

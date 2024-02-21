@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/colorPrimary"/> <!-- reemplaza con tu color deseado -->
+    <corners android:radius="30dp"/> <!-- ajusta el radio para que se vea como en tu diseño -->
+</shape>

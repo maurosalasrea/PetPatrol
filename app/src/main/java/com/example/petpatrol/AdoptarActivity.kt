@@ -28,7 +28,7 @@ class AdoptarActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_adoptar)
 
 
         findViewById<ImageButton>(R.id.btnFiltro).setOnClickListener {
@@ -118,7 +118,9 @@ class AdoptarActivity : AppCompatActivity() {
 
                 else -> false
             }
+
         }
+        bottomNavigation.selectedItemId = R.id.adoptar
     }
 
     @Deprecated("Deprecated in Java")

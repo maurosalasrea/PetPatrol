@@ -27,9 +27,7 @@ class LoginActivity : AppCompatActivity() {
             performLogin()
         }
 
-        // Configura el OnClickListener para forgotPasswordTextView
         forgotPasswordTextView.setOnClickListener {
-            // Crea un Intent para iniciar ForgotPasswordActivity
             val forgotPasswordIntent = Intent(this, ForgotPassword::class.java)
             startActivity(forgotPasswordIntent)
         }
@@ -40,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         val password = passwordEditText.text.toString()
 
         if (credentialsAreValid(email, password)) {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, AdoptarActivity::class.java)
             startActivity(intent)
             finish()
         } else {

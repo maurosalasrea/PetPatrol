@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class PerritosFragment : Fragment() {
+class AdoptarFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
@@ -16,21 +16,21 @@ class PerritosFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Asegúrate de inflar el layout correcto aquí. Debe ser el layout del fragmento, no de la actividad.
-        val view = inflater.inflate(R.layout.fragment_perritos, container, false)
+        val view = inflater.inflate(R.layout.adoptar_fragment, container, false)
 
         recyclerView = view.findViewById(R.id.rvPerritos)
 
         // Ejemplo de datos
         val listaPerritos = listOf(
-            Perrito(R.drawable.perrito, "Descripción del perrito 1"),
-            Perrito(R.drawable.perrito, "Descripción del perrito 2"),
-            Perrito(R.drawable.perrito, "Descripción del perrito 1"),
-            Perrito(R.drawable.perrito, "Descripción del perrito 2"),
-            Perrito(R.drawable.perrito, "Descripción del perrito 2"),
+            Adoptar(R.drawable.perrito, "Descripción del perrito 1"),
+            Adoptar(R.drawable.perrito, "Descripción del perrito 2"),
+            Adoptar(R.drawable.perrito, "Descripción del perrito 1"),
+            Adoptar(R.drawable.perrito, "Descripción del perrito 2"),
+            Adoptar(R.drawable.perrito, "Descripción del perrito 2"),
             // Agrega más perritos aquí
         )
 
-        recyclerView.adapter = PerritosAdapter(listaPerritos)
+        recyclerView.adapter = AdoptarAdapter(listaPerritos)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         return view

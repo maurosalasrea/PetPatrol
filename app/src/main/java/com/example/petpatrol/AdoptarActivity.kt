@@ -14,15 +14,12 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.navigation.NavigationView
 
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity() {
+class AdoptarActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
@@ -49,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, PerritosFragment())
+                .replace(R.id.fragment_container, AdoptarFragment())
                 .commit()
         }
 
@@ -63,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         val btnAdoptar: MaterialButton = findViewById(R.id.btnAdoptar)
         btnAdoptar.setOnClickListener {
             // Iniciar MainActivity (aunque ya estamos en ella, es solo un ejemplo)
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, AdoptarActivity::class.java)
             startActivity(intent)
         }
 
@@ -93,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.adoptar -> {
                     // Iniciar MainActivity
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, AdoptarActivity::class.java)
                     startActivity(intent)
                     true
                 }

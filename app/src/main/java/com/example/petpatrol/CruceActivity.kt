@@ -13,7 +13,7 @@ class CruceActivity : AppCompatActivity() {
         val btnAdoptar: MaterialButton = findViewById(R.id.btnAdoptar)
         btnAdoptar.setOnClickListener {
             // Iniciar MainActivity (aunque ya estamos en ella, es solo un ejemplo)
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, AdoptarActivity::class.java)
             startActivity(intent)
         }
 

@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PerritosAdapter(private val listaPerritos: List<Perrito>) : RecyclerView.Adapter<PerritosAdapter.ViewHolder>() {
+class AdoptarAdapter(private val listaPerritos: List<Adoptar>) : RecyclerView.Adapter<AdoptarAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.ivPerrito)
@@ -16,7 +16,7 @@ class PerritosAdapter(private val listaPerritos: List<Perrito>) : RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Asegúrate de inflar el layout correcto aquí
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.perrito_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.adoptar_item, parent, false)
         return ViewHolder(view)
     }
 

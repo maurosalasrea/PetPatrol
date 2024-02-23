@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+@Suppress("DEPRECATION")
 class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +24,7 @@ class AddActivity : AppCompatActivity() {
                 }
                 R.id.adoptar -> {
                     // Iniciar MainActivity
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, AdoptarActivity::class.java)
                     startActivity(intent)
                     true
                 }

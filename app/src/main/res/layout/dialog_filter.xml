@@ -11,7 +11,39 @@
 
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-10dp"
+        android:text="Animal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+    <CheckBox
+        android:id="@+id/checkbox_option1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Gato" />
+
+    <CheckBox
+        android:id="@+id/checkbox_option2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Perro" />
+
+    <CheckBox
+        android:id="@+id/checkbox_option3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Otros" />
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -36,13 +68,21 @@
         android:layout_marginBottom="-10dp"
         android:text="Adulto" />
 
+    <CheckBox
+        android:id="@+id/checkbox_option03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Mayor" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Tamano"
+        android:text="Tamaño"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
@@ -52,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Grande" />
+        android:text="Pequeño" />
 
     <CheckBox
         android:id="@+id/checkbox_option12"
@@ -68,14 +108,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Chico" />
+        android:text="Grande"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="-10dp"
-        android:text="Raza"
+        android:text="Sexo"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <CheckBox
@@ -84,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Raza" />
+        android:text="Macho" />
 
     <CheckBox
         android:id="@+id/checkbox_option22"
@@ -92,32 +132,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Sin Raza" />
+        android:text="Hembra" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="-10dp"
-        android:text="Vacunas"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-    <CheckBox
-        android:id="@+id/checkbox_option31"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="-10dp"
-        android:text="Con Vacunas" />
 
-    <CheckBox
-        android:id="@+id/checkbox_option32"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="-10dp"
-        android:text="Sin Vacunas" />
+
+
+
 
     <Button
         android:id="@+id/button_apply_filter"
@@ -126,5 +147,4 @@
         android:layout_marginTop="16dp"
         android:text="Enviar"
         android:textColor="@color/white" />
-
 </LinearLayout>

@@ -3,6 +3,8 @@ package com.example.petpatrol
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 @Suppress("DEPRECATION")
@@ -11,6 +13,12 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+        val spinner1: Spinner = findViewById(R.id.spinner1)
+        // Suponiendo que tienes un array de strings con las opciones.
+        val options = arrayOf("1", "2", "3")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, options)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner1.adapter = adapter
 
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)

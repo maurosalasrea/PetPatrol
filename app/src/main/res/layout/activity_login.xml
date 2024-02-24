@@ -8,15 +8,6 @@
     android:gravity="center_horizontal"
     android:background="@color/white">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/logoImageView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:src="@drawable/logo"-->
-<!--        android:contentDescription="@string/logo"-->
-<!--        android:layout_marginBottom="-60dp"/>-->
-
     <ImageView
         android:id="@+id/perrituImageView"
         android:layout_width="250dp"

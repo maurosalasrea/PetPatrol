@@ -18,112 +18,81 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 
 
-@Suppress("DEPRECATION")
 class AdoptarActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
+    private val bottomNavigation by lazy { findViewById<BottomNavigationView>(R.id.bottom_navigation) }
 
-
-    @SuppressLint("InflateParams", "MissingInflatedId")
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adoptar)
 
+        setupFilterButton()
+        loadFragment(savedInstanceState)
+        setupButtons()
+        setupBottomNavigation()
+    }
 
+    private fun setupFilterButton() {
         findViewById<ImageButton>(R.id.btnFiltro).setOnClickListener {
-            val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.dialog_filter)
-            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) // Hace el fondo del diálogo transparente para permitir esquinas redondeadas
-            dialog.findViewById<Button>(R.id.button_apply_filter).setOnClickListener {
-                // Implementa la lógica para aplicar el filtro aquí
-                dialog.dismiss()
-            }
-            dialog.show()
+            showDialog()
+        }
+    }
+    private fun setupButtons() {
+        findViewById<MaterialButton>(R.id.btnAyudar).setOnClickListener {
+            navigateToActivity(AyudarActivity::class.java)
         }
 
+        findViewById<MaterialButton>(R.id.btnConquistar).setOnClickListener {
+            navigateToActivity(CruceActivity::class.java)
+        }
+    }
+    private fun navigateToActivity(activityClass: Class<*>) {
+        if (this::class.java != activityClass) {
+            startActivity(Intent(this, activityClass))
+        }
+    }
+    private fun showDialog() {
+        val dialog = Dialog(this).apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(R.layout.dialog_filter)
+            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
+            findViewById<Button>(R.id.button_apply_filter).setOnClickListener {
+                dismiss()
+            }
+        }
+        dialog.show()
+    }
+
+    private fun loadFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AdoptarFragment())
                 .commit()
         }
+    }
 
-
-
-        val logoImageView: ImageView = findViewById(R.id.logoImageView)
-        logoImageView.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-        }
-        val btnAdoptar: MaterialButton = findViewById(R.id.btnAdoptar)
-        btnAdoptar.setOnClickListener {
-            // Iniciar MainActivity (aunque ya estamos en ella, es solo un ejemplo)
-            val intent = Intent(this, AdoptarActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnAyudar: MaterialButton = findViewById(R.id.btnAyudar)
-        btnAyudar.setOnClickListener {
-            // Iniciar AyudarActivity
-            val intent = Intent(this, AyudarActivity::class.java)
-            startActivity(intent)
-        }
-
-        val btnConquistar: MaterialButton = findViewById(R.id.btnConquistar)
-        btnConquistar.setOnClickListener {
-            // Iniciar CruceActivity
-            val intent = Intent(this, CruceActivity::class.java)
-            startActivity(intent)
-        }
-
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+    private fun setupBottomNavigation() {
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.profile -> {
-                    // Iniciar ProfileActivity
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.adoptar -> {
-                    // Iniciar MainActivity
-                    val intent = Intent(this, AdoptarActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.add -> {
-                    // Iniciar AddActivity
-                    val intent = Intent(this, AddActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.alerta -> {
-                    // Iniciar AyudarActivity
-                    val intent = Intent(this, AyudarActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.cruzar -> {
-                    // Iniciar CruceActivity
-                    val intent = Intent(this, CruceActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
+                R.id.profile -> startNewActivity(ProfileActivity::class.java)
+                R.id.adoptar -> Unit
+                R.id.add -> startNewActivity(AddActivity::class.java)
+                R.id.alerta -> startNewActivity(AyudarActivity::class.java)
+                R.id.cruzar -> startNewActivity(CruceActivity::class.java)
                 else -> false
             }
-
+            true
         }
         bottomNavigation.selectedItemId = R.id.adoptar
     }
 
-    @Deprecated("Deprecated in Java")
+    private fun startNewActivity(activity: Class<*>) {
+        val intent = Intent(this, activity)
+        startActivity(intent)
+    }
+
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
             drawerLayout.closeDrawer(GravityCompat.END)

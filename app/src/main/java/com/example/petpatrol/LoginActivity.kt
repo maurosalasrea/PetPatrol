@@ -9,28 +9,21 @@ import android.widget.TextView
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var emailEditText: EditText
-    private lateinit var passwordEditText: EditText
-    private lateinit var loginButton: Button
-    private lateinit var forgotPasswordTextView: TextView
+    private val emailEditText by lazy { findViewById<EditText>(R.id.emailEditText) }
+    private val passwordEditText by lazy { findViewById<EditText>(R.id.passwordEditText) }
+    private val loginButton by lazy { findViewById<Button>(R.id.loginButton) }
+    private val forgotPasswordTextView by lazy { findViewById<TextView>(R.id.forgotPasswordTextView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        emailEditText = findViewById(R.id.emailEditText)
-        passwordEditText = findViewById(R.id.passwordEditText)
-        loginButton = findViewById(R.id.loginButton)
-        forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView)
+        setupUI()
+    }
 
-        loginButton.setOnClickListener {
-            performLogin()
-        }
-
-        forgotPasswordTextView.setOnClickListener {
-            val forgotPasswordIntent = Intent(this, ForgotPassword::class.java)
-            startActivity(forgotPasswordIntent)
-        }
+    private fun setupUI() {
+        loginButton.setOnClickListener { performLogin() }
+        forgotPasswordTextView.setOnClickListener { navigateToForgotPassword() }
     }
 
     private fun performLogin() {
@@ -38,19 +31,26 @@ class LoginActivity : AppCompatActivity() {
         val password = passwordEditText.text.toString()
 
         if (credentialsAreValid(email, password)) {
-            val intent = Intent(this, AdoptarActivity::class.java)
-            startActivity(intent)
-            finish()
+            navigateToAdoptarActivity()
         } else {
             // Mostrar un error o hacer alguna otra acción
         }
     }
 
-    private fun credentialsAreValid(email: String, password: String): Boolean {
-        // Implementa tu lógica de validación de credenciales
-        return true
+    private fun navigateToForgotPassword() {
+        startActivity(Intent(this, ForgotPassword::class.java))
     }
 
+    private fun navigateToAdoptarActivity() {
+        Intent(this, AdoptarActivity::class.java).also { intent ->
+            startActivity(intent)
+            finish()
+        }
+    }
 
-
+    private fun credentialsAreValid(email: String, password: String): Boolean {
+        // Implementa tu lógica de validación de credenciales aquí
+        // Por ahora, siempre devuelve verdadero para simplificar
+        return true
+    }
 }

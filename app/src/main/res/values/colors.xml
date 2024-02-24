@@ -11,5 +11,6 @@
     <color name="colorButtonTextColor">#FFFFFF</color>
     <color name="colorLinkText">#0000EE</color>
     <color name="grey">#A7A7A7</color>
+    <color name="hearth">#ed5168</color>
 
 </resources>

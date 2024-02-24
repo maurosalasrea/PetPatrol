@@ -134,7 +134,47 @@
         android:layout_marginBottom="-10dp"
         android:text="Hembra" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Distrito"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+
+    <CheckBox
+        android:id="@+id/checkbox_option51"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Iquitos" />
+
+    <CheckBox
+        android:id="@+id/checkbox_option52"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Punchana" />
+
+    <CheckBox
+        android:id="@+id/checkbox_option53"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="Belen"/>
+
+    <CheckBox
+        android:id="@+id/checkbox_option54"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-10dp"
+        android:text="San Juan"/>
 
 
 

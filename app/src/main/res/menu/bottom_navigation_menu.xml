@@ -15,9 +15,9 @@
     <item
         android:id="@+id/alerta"
         android:icon="@drawable/ic_alert"
-        android:title="@string/favoritos" />
+        android:title="@string/ayudar" />
     <item
         android:id="@+id/cruzar"
         android:icon="@drawable/ic_hearth"
-        android:title="@string/hearth" />
+        android:title="@string/cruce" />
 </menu>

@@ -4,87 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/white">
 
-    <!-- Logo en la parte superior -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-40dp"
-        android:paddingStart="5dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="-40dp"
         android:contentDescription="@string/logo"
+        android:paddingStart="5dp"
         android:src="@drawable/logo"
         tools:ignore="RtlSymmetry" />
 
-    <!-- Campo de texto para el nombre -->
-    <EditText
-        android:id="@+id/nameEditText"
+
+    <LinearLayout
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
+        android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/logoImageView"
-        android:layout_marginTop="20dp"/>
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
-    <!-- Botón para insertar imagen -->
-    <Button
-        android:id="@+id/buttonInsertImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_image"
-        android:layout_below="@id/nameEditText"
-        android:layout_marginTop="16dp"/>
-
-    <!-- Campo de texto para la descripción -->
-    <EditText
-        android:id="@+id/descriptionEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/descripcion_perrito"
-        android:inputType="textMultiLine"
-        android:minLines="3"
-        android:layout_below="@id/buttonInsertImage"
-        android:layout_marginTop="16dp"/>
-
-    <!-- Selectores en 3 filas y 2 columnas -->
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:rowCount="3"
-        android:columnCount="2"
-        android:layout_below="@id/descriptionEditText"
-        android:layout_marginTop="16dp"
-        android:padding="8dp">
-
-        <!-- Ejemplo de un selector. Repetir para los 6 necesarios -->
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="4dp"/>
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="4dp"/>
-        <Spinner
-            android:id="@+id/spinner3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="4dp"/>
+            android:layout_marginTop="-10dp"
+            android:hint="@string/InserteNombre"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
 
-        <!-- Asegúrate de agregar más Spinners según sea necesario -->
-    </GridLayout>
+        <ImageButton
+            android:id="@+id/buttonInsertImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_border"
+            android:contentDescription="@string/add_image"
+            android:padding="10dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_add_image" />
 
-    <!-- BottomNavigationView -->
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/InserteDescripcion"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:textAlignment="center" />
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="3"
+            android:padding="8dp"
+            android:rowCount="3">
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
+            <Spinner
+                android:id="@+id/spinner4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/spinner5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/spinner6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorLinkText"
+            android:text="@string/Publicar"
+            android:textColor="@color/colorButtonTextColor"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

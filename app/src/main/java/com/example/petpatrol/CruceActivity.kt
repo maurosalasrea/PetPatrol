@@ -33,6 +33,7 @@ class CruceActivity : AppCompatActivity() {
         }
     }
 
+
     private fun showDialog() {
         val dialog = Dialog(this).apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -59,8 +60,8 @@ class CruceActivity : AppCompatActivity() {
             navigateToActivity(AdoptarActivity::class.java)
         }
 
-        findViewById<MaterialButton>(R.id.btnConquistar).setOnClickListener {
-            navigateToActivity(CruceActivity::class.java)
+        findViewById<MaterialButton>(R.id.btnAyudar).setOnClickListener {
+            navigateToActivity(AyudarActivity::class.java)
         }
     }
 

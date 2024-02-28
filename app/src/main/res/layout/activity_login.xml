@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:background="@color/white"
     android:padding="24dp"
-    android:gravity="center_horizontal"
-    android:background="@color/white">
+    android:gravity="center_horizontal">
 
     <ImageView
         android:id="@+id/perrituImageView"
         android:layout_width="250dp"
         android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
         android:src="@drawable/perritu"
         android:contentDescription="@string/logo"/>
@@ -21,7 +21,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/perrituImageView"
+        android:layout_marginTop="20dp"
         android:hint="@string/email"
         app:hintAnimationEnabled="true"
         app:hintEnabled="true"
@@ -34,12 +35,12 @@
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/emailTextInputLayout"
         android:layout_marginTop="10dp"
         android:hint="@string/contrasena"
         app:hintAnimationEnabled="true"
@@ -58,24 +59,28 @@
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/passTextInputLayout"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/colorLinkText"
         android:text="@string/login"
-        android:textColor="@color/colorButtonTextColor"
-        android:layout_marginTop="30dp"/>
+        android:textColor="@color/colorButtonTextColor"/>
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/loginButton"
         android:backgroundTint="@color/grey"
         android:text="@string/register"
         android:textColor="@color/colorButtonTextColor"/>
 
     <TextView
         android:id="@+id/forgotPasswordTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        android:layout_marginTop="10dp"/>
+        android:textAlignment="center"
+        android:layout_below="@id/registerButton"
+        android:layout_marginTop="10dp"
+        android:text="@string/forgot_password"/>
 
-</LinearLayout>
+</RelativeLayout>

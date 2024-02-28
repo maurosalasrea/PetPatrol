@@ -1,149 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="@color/white">
 
     <ImageView
         android:id="@+id/profileImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/perritu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         android:contentDescription="@string/profile_image"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:src="@drawable/perritu" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_below="@id/profileImageView"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nameTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="@string/name"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:startIconDrawable="@drawable/ic_user">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lastNameTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/last_name"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:startIconDrawable="@drawable/ic_user">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/lastNameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/email"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:startIconDrawable="@drawable/ic_mail">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="20dp"
+                android:hint="@string/name"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:startIconDrawable="@drawable/ic_user">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/password"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_password">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lastNameTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:hint="@string/last_name"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:startIconDrawable="@drawable/ic_user">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/confirmPasswordTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/confirm_password"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_password">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lastNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/confirmPasswordEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="10dp"
+                android:hint="@string/email"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:startIconDrawable="@drawable/ic_mail">
 
-        <Button
-            android:id="@+id/saveChangesButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorLinkText"
-            android:text="@string/save_changes"
-            android:textColor="@color/colorButtonTextColor"
-            android:layout_marginTop="30dp"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/resetButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/grey"
-            android:text="@string/reset"
-            android:textColor="@color/colorButtonTextColor"
-            android:layout_marginTop="4dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/password"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_password">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirmPasswordTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/confirm_password"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/saveChangesButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/colorLinkText"
+                android:text="@string/save_changes"
+                android:textColor="@color/colorButtonTextColor" />
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/grey"
+                android:text="@string/reset"
+                android:textColor="@color/colorButtonTextColor" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/white"
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:menu="@menu/bottom_navigation_menu" />
 
-</LinearLayout>
+</RelativeLayout>

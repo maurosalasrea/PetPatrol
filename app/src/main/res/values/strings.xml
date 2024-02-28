@@ -38,4 +38,12 @@
     <string name="InserteDescripcion">Inserte Descripcion</string>
     <string name="InserteNombre">Inserte Nombre</string>
     <string name="Publicar">Publicar</string>
+    <string name="back">Regresar a Login</string>
+    <string name="mascotas_registradas">Mascotas Registradas</string>
+    <string name="ver_animales_publicados">Ver Animales Publicados</string>
+    <string name="editar_animales">Editar Animales</string>
+    <string name="regresar">Regresar</string>
+    <string name="texto_de_ejemplo">Texto de ejemplo</string>
+    <string name="boton_editar">Boton Editar</string>
+    <string name="boton_eliminar">Boton Eliminar</string>
 </resources>

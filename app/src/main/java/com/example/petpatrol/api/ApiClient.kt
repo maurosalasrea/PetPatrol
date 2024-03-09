@@ -40,15 +40,17 @@ interface UserService {
     @GET("/tipoMascotas")
     fun getTipoMascotas(): Call<List<TipoMascotas>>
 
-    @GET("/users/email/{email}")
-    fun getUserByEmail(@Path("email") email: String): Call<UserData>
+    @GET("/users/{id}")
+    fun getUserById(@Path("id") id: Int): Call<UserData>
 
-    @PUT("/users/update")
-    fun updateUser(@Body userData: UserData): Call<ResponseBody>
+    @PUT("/users/update/{id}")
+    fun updateUser(@Path("id") id: Int, @Body userData: UserData): Call<ResponseBody>
 
+    @POST("/users/register")
+    fun registerUser(@Body userData: UserData): Call<ResponseBody>
 
 }
-data class LoginData(val user_id: Int, val email_address: String, val password: String)
+data class LoginData(val email_address: String, val password: String)
 
 data class TipoPost(
     @SerializedName("id_tipo_post") val id_tipoPost: Int,

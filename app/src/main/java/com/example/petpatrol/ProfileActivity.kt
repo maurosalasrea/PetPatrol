@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import com.example.petpatrol.api.RetrofitClient
+import com.example.petpatrol.api.SharedPreferencesHelper
 import com.example.petpatrol.api.UserData
 import com.example.petpatrol.api.UserService
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,15 +34,18 @@ class ProfileActivity : AppCompatActivity() {
         phoneEditText = findViewById(R.id.phoneEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
 
-        val userEmail = "Obtener el correo electrónico del usuario actual"
+        // Cambiado para usar SharedPreferencesHelper para obtener el user_id
+        val userId = intent.getIntExtra("USER_ID", 0) // Asegúrate de manejar el caso en que el ID sea 0 o default
+        Log.d("ProfileActivity", "User ID usado para cargar datos: $userId")
 
-        // Cargar los datos del usuario al iniciar
-        loadUserData(userEmail)
-
+        if (userId != 0) {
+            loadUserData(userId)
+        } else {
+            Toast.makeText(this, "No se encontró ID de usuario.", Toast.LENGTH_LONG).show()
+        }
         val saveChangesButton: Button = findViewById(R.id.saveChangesButton)
-
         saveChangesButton.setOnClickListener {
-            val userData = com.example.petpatrol.api.UserData(
+            val userData = UserData(
                 email = emailEditText.text.toString(),
                 firstName = nameEditText.text.toString(),
                 lastName = lastNameEditText.text.toString(),
@@ -54,57 +58,54 @@ class ProfileActivity : AppCompatActivity() {
         setupBottomNavigation()
     }
 
-    private fun setupBottomNavigation() {
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).apply {
-            setOnNavigationItemSelectedListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.profile -> {}
-                    R.id.adoptar -> navigateToActivity(AdoptarActivity::class.java)
-                    R.id.add -> navigateToActivity(AddActivity::class.java)
-                    R.id.alerta -> navigateToActivity(AyudarActivity::class.java)
-                    R.id.cruzar -> navigateToActivity(CruceActivity::class.java)
-                }
-                true
-            }
-            selectedItemId = R.id.profile
-        }
-    }
-
-
-    private fun loadUserData(email: String) {
+    private fun loadUserData(userId: Int) {
         val service = RetrofitClient.createService(UserService::class.java)
-        service.getUserByEmail(email).enqueue(object : Callback<UserData> {
+        service.getUserById(userId).enqueue(object : Callback<UserData> {
             override fun onResponse(call: Call<UserData>, response: Response<UserData>) {
                 if (response.isSuccessful) {
-                    val userData = response.body()
-                    // Actualiza los campos de texto con los datos del usuario
-                    Log.d("ProfileActivity", "Datos del usuario cargados correctamente")
+                    response.body()?.let {
+                        emailEditText.setText(it.email)
+                        nameEditText.setText(it.firstName)
+                        lastNameEditText.setText(it.lastName)
+                        phoneEditText.setText(it.phoneNumber)
+                        // Considerar seguridad al mostrar la contraseña
+                    }
                 } else {
-                    Toast.makeText(
-                        this@ProfileActivity,
-                        "Error al cargar datos del usuario",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(this@ProfileActivity, "Error al cargar los datos del usuario.", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<UserData>, t: Throwable) {
-                Toast.makeText(
-                    this@ProfileActivity,
-                    "Fallo al cargar datos: ${t.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this@ProfileActivity, "Fallo al cargar los datos: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }
 
     private fun updateUser(userData: UserData) {
+        // Verificación simple de datos no vacíos
+        if (userData.email.isEmpty() || userData.firstName.isEmpty() || userData.lastName.isEmpty() || userData.phoneNumber.isEmpty()) {
+            Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_LONG).show()
+            return
+        }
+
+//        val userId = SharedPreferencesHelper(this).userId
+//        Log.d("ProfileActivity", "Intentando actualizar datos para el User ID: $userId")
+
+        val userId = intent.getIntExtra("USER_ID", 0) // Asegúrate de manejar el caso en que el ID sea 0 o default
+        Log.d("ProfileActivity", "User ID usado para cargar datos: $userId")
+
+        if (userId == 0) {
+            Toast.makeText(this, "Error: ID de usuario no disponible.", Toast.LENGTH_LONG).show()
+            return
+        }
+
         val service = RetrofitClient.createService(UserService::class.java)
-        service.updateUser(userData).enqueue(object : Callback<ResponseBody> {
+        service.updateUser(userId, userData).enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@ProfileActivity, "Datos actualizados correctamente", Toast.LENGTH_LONG).show()
-                    Log.d("ProfileActivity", "Datos del usuario actualizados correctamente")
+                    // Opcional: Recargar los datos del usuario para confirmar la actualización
+                    loadUserData(userId)
                 } else {
                     Toast.makeText(this@ProfileActivity, "Error al actualizar datos", Toast.LENGTH_LONG).show()
                 }
@@ -118,9 +119,26 @@ class ProfileActivity : AppCompatActivity() {
 
 
 
+
+
     private fun navigateToActivity(activityClass: Class<*>) {
         if (this::class.java != activityClass) {
             startActivity(Intent(this, activityClass))
+        }
+    }
+    private fun setupBottomNavigation() {
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).apply {
+            setOnNavigationItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.profile -> {}
+                    R.id.adoptar -> navigateToActivity(AdoptarActivity::class.java)
+                    R.id.add -> navigateToActivity(AddActivity::class.java)
+                    R.id.alerta -> navigateToActivity(AyudarActivity::class.java)
+                    R.id.cruzar -> navigateToActivity(CruceActivity::class.java)
+                }
+                true
+            }
+            selectedItemId = R.id.profile
         }
     }
 

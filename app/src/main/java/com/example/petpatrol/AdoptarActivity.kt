@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
@@ -20,16 +21,27 @@ class AdoptarActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private val bottomNavigation by lazy { findViewById<BottomNavigationView>(R.id.bottom_navigation) }
+    private var userId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adoptar)
+        userId = intent.getIntExtra("USER_ID", 0)
+        Log.d("AdoptarActivity", "User ID obtenido: $userId")
 
         drawerLayout = findViewById(R.id.drawer_layout) // Asegúrate de tener un ID correspondiente en tu layout
         setupFilterButton()
         loadFragment(savedInstanceState)
         setupButtons()
         setupBottomNavigation()
+
+
+    }
+
+    private fun startNewActivity(activity: Class<*>) {
+        val intent = Intent(this, activity)
+        intent.putExtra("USER_ID", userId) // Pasar userId a la siguiente actividad si es necesario
+        startActivity(intent)
     }
 
     private fun setupFilterButton() {
@@ -78,7 +90,13 @@ class AdoptarActivity : AppCompatActivity() {
     private fun setupBottomNavigation() {
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.profile -> startNewActivity(ProfileActivity::class.java)
+                R.id.profile -> {
+                    // Pasar userId a ProfileActivity
+                    val intent = Intent(this, ProfileActivity::class.java).apply {
+                        putExtra("USER_ID", userId)
+                    }
+                    startActivity(intent)
+                }
                 R.id.adoptar -> Unit
                 R.id.add -> startNewActivity(AddActivity::class.java)
                 R.id.alerta -> startNewActivity(AyudarActivity::class.java)
@@ -88,11 +106,6 @@ class AdoptarActivity : AppCompatActivity() {
             true
         }
         bottomNavigation.selectedItemId = R.id.adoptar
-    }
-
-    private fun startNewActivity(activity: Class<*>) {
-        val intent = Intent(this, activity)
-        startActivity(intent)
     }
 
     @SuppressLint("MissingSuperCall")
@@ -125,8 +138,6 @@ class AdoptarActivity : AppCompatActivity() {
     }
 
     private fun logout() {
-        // Aquí manejarías el cierre de sesión, como borrar SharedPreferences o datos de sesión
-        // Redirigir al usuario a la pantalla de inicio de sesión
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

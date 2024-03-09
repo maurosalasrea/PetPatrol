@@ -74,13 +74,13 @@
         android:text="@string/register"
         android:textColor="@color/colorButtonTextColor"/>
 
-    <TextView
-        android:id="@+id/forgotPasswordTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_below="@id/registerButton"
-        android:layout_marginTop="10dp"
-        android:text="@string/forgot_password"/>
+<!--    <TextView-->
+<!--        android:id="@+id/forgotPasswordTextView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textAlignment="center"-->
+<!--        android:layout_below="@id/registerButton"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:text="@string/forgot_password"/>-->
 
 </RelativeLayout>

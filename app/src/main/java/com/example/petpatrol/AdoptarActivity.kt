@@ -1,22 +1,20 @@
+@file:Suppress("DEPRECATION", "UNUSED_EXPRESSION")
+
 package com.example.petpatrol
 
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
-
 
 class AdoptarActivity : AppCompatActivity() {
 
@@ -27,6 +25,7 @@ class AdoptarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adoptar)
 
+        drawerLayout = findViewById(R.id.drawer_layout) // Asegúrate de tener un ID correspondiente en tu layout
         setupFilterButton()
         loadFragment(savedInstanceState)
         setupButtons()
@@ -38,6 +37,7 @@ class AdoptarActivity : AppCompatActivity() {
             showDialog()
         }
     }
+
     private fun setupButtons() {
         findViewById<MaterialButton>(R.id.btnAyudar).setOnClickListener {
             navigateToActivity(AyudarActivity::class.java)
@@ -47,11 +47,13 @@ class AdoptarActivity : AppCompatActivity() {
             navigateToActivity(CruceActivity::class.java)
         }
     }
+
     private fun navigateToActivity(activityClass: Class<*>) {
         if (this::class.java != activityClass) {
             startActivity(Intent(this, activityClass))
         }
     }
+
     private fun showDialog() {
         val dialog = Dialog(this).apply {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -93,11 +95,41 @@ class AdoptarActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
             drawerLayout.closeDrawer(GravityCompat.END)
         } else {
-            super.onBackPressed()
+            // Mostrar un diálogo de confirmación antes de cerrar sesión
+            showLogoutConfirmationDialog()
         }
+    }
+
+
+    private fun showLogoutConfirmationDialog() {
+        val dialog = Dialog(this).apply {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setContentView(R.layout.dialog_logout_confirmation)
+            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            findViewById<Button>(R.id.button_confirm_logout).setOnClickListener {
+                logout()
+                dismiss()
+            }
+            findViewById<Button>(R.id.button_cancel_logout).setOnClickListener {
+                dismiss()
+            }
+        }
+        dialog.show()
+    }
+
+    private fun logout() {
+        // Aquí manejarías el cierre de sesión, como borrar SharedPreferences o datos de sesión
+        // Redirigir al usuario a la pantalla de inicio de sesión
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

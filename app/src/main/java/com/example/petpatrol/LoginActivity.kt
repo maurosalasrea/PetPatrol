@@ -1,56 +1,70 @@
 package com.example.petpatrol
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.petpatrol.api.LoginData
+import com.example.petpatrol.api.RetrofitClient
+import com.example.petpatrol.api.UserService
+import com.example.petpatrol.api.Users
+import com.google.android.material.textfield.TextInputEditText
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
-
-    private val emailEditText by lazy { findViewById<EditText>(R.id.emailEditText) }
-    private val passwordEditText by lazy { findViewById<EditText>(R.id.passwordEditText) }
-    private val loginButton by lazy { findViewById<Button>(R.id.loginButton) }
-    private val forgotPasswordTextView by lazy { findViewById<TextView>(R.id.forgotPasswordTextView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        setupUI()
-    }
+        val emailEditText = findViewById<TextInputEditText>(R.id.emailEditText)
+        val passwordEditText = findViewById<TextInputEditText>(R.id.passwordEditText)
+        val loginButton = findViewById<Button>(R.id.loginButton)
+        val forgotPasswordTextView = findViewById<TextView>(R.id.forgotPasswordTextView)
 
-    private fun setupUI() {
-        loginButton.setOnClickListener { performLogin() }
-        forgotPasswordTextView.setOnClickListener { navigateToForgotPassword() }
-    }
-
-    private fun performLogin() {
-        val email = emailEditText.text.toString()
-        val password = passwordEditText.text.toString()
-
-        if (credentialsAreValid(email, password)) {
-            navigateToAdoptarActivity()
-        } else {
-            // Mostrar un error o hacer alguna otra acción
+        loginButton.setOnClickListener {
+            performLogin(emailEditText.text.toString().trim(), passwordEditText.text.toString().trim())
         }
+
+        forgotPasswordTextView.setOnClickListener {
+            navigateToForgotPassword()
+        }
+    }
+
+    private fun performLogin(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Por favor ingresa tu email y contraseña.", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val userService: UserService = RetrofitClient.createService(UserService::class.java)
+        userService.postLogin(LoginData(0, email, password)).enqueue(object : Callback<Users> {
+            override fun onResponse(call: Call<Users>, response: Response<Users>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(this@LoginActivity, "Inicio de sesión exitoso.", Toast.LENGTH_SHORT).show()
+                    navigateToAdoptarActivity()
+                } else {
+                    Toast.makeText(this@LoginActivity, "Credenciales incorrectas.", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Users>, t: Throwable) {
+                Toast.makeText(this@LoginActivity, "Error en la conexión: ${t.message}", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun navigateToForgotPassword() {
-        startActivity(Intent(this, ForgotPassword::class.java))
+        // Implementa la navegación a la actividad de olvido de contraseña
     }
 
     private fun navigateToAdoptarActivity() {
-        Intent(this, AdoptarActivity::class.java).also { intent ->
-            startActivity(intent)
-            finish()
-        }
-    }
-
-    private fun credentialsAreValid(email: String, password: String): Boolean {
-        // Implementa tu lógica de validación de credenciales aquí
-        // Por ahora, siempre devuelve verdadero para simplificar
-        return true
+        val intent = Intent(this, AdoptarActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

@@ -11,36 +11,58 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/logo"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="0dp"
+        android:src="@drawable/logo"
         tools:ignore="RtlSymmetry" />
-
 
 
     <LinearLayout
         android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logoImageView"
         android:layout_above="@id/bottom_navigation"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_below="@id/logoImageView"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/nameEditText"
+        <Spinner
+            android:id="@+id/spinner6"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:id="@+id/nameAndSpinnerContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-            android:hint="@string/InserteNombre"
-            android:inputType="textPersonName"
-            android:textAlignment="center" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/InserteNombre"
+                android:inputType="textPersonName"
+                android:textAlignment="center" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp" />
+
+        </LinearLayout>
+
 
         <ImageButton
             android:id="@+id/buttonInsertImage"
@@ -57,7 +79,7 @@
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:hint="@string/InserteDescripcion"
             android:inputType="textMultiLine"
             android:maxLines="5"
@@ -67,40 +89,44 @@
             android:id="@+id/gridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:columnCount="3"
             android:padding="8dp"
             android:rowCount="3">
-
-            <Spinner
-                android:id="@+id/spinner1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"/>
 
 
             <Spinner
                 android:id="@+id/spinner2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"/>
+                android:layout_height="wrap_content" />
 
 
             <Spinner
                 android:id="@+id/spinner3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"/>
+                android:layout_height="wrap_content" />
 
             <Spinner
                 android:id="@+id/spinner4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:id="@+id/gridLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1"
+            android:padding="8dp"
+            android:rowCount="1">
 
             <Spinner
                 android:id="@+id/spinner5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_height="wrap_content" />
 
         </GridLayout>
 
@@ -108,17 +134,18 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:backgroundTint="@color/colorLinkText"
             android:text="@string/Publicar"
-            android:textColor="@color/colorButtonTextColor"
-            android:layout_marginTop="30dp"/>
+            android:textColor="@color/colorButtonTextColor" />
+
         <Button
             android:id="@+id/todosButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
             android:text="@string/ver_animales_publicados"
-            android:textColor="@color/colorButtonTextColor"/>
+            android:textColor="@color/colorButtonTextColor" />
 
     </LinearLayout>
 

@@ -46,4 +46,8 @@
     <string name="texto_de_ejemplo">Texto de ejemplo</string>
     <string name="boton_editar">Boton Editar</string>
     <string name="boton_eliminar">Boton Eliminar</string>
+    <string name="s_cerrar_sesi_n">Sí, cerrar sesión</string>
+    <string name="est_s_seguro_de_que_quieres_cerrar_sesi_n">¿Estás seguro de que quieres cerrar sesión?</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="phone">Telefono</string>
 </resources>

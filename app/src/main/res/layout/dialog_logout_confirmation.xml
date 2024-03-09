@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textview_confirmation_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:padding="16dp"
+        android:text="@string/est_s_seguro_de_que_quieres_cerrar_sesi_n" />
+
+    <Button
+        android:id="@+id/button_confirm_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textview_confirmation_message"
+        android:layout_marginTop="10dp"
+        android:text="@string/s_cerrar_sesi_n"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/button_cancel_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_confirm_logout"
+        android:layout_marginTop="5dp"
+        android:text="@string/cancelar"
+        android:textColor="@color/white" />
+</RelativeLayout>

@@ -37,5 +37,10 @@
         <!-- Otros atributos que desees -->
     </style>
 
+    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 
 </resources>

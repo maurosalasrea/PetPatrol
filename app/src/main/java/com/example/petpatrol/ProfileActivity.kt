@@ -104,8 +104,13 @@ class ProfileActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@ProfileActivity, "Datos actualizados correctamente", Toast.LENGTH_LONG).show()
-                    // Opcional: Recargar los datos del usuario para confirmar la actualización
-                    loadUserData(userId)
+
+                    // Reiniciar ProfileActivity para reflejar los cambios actualizados
+                    val refreshIntent = Intent(this@ProfileActivity, ProfileActivity::class.java)
+                    refreshIntent.putExtra("USER_ID", userId) // Pasar nuevamente el userId a la actividad
+                    startActivity(refreshIntent)
+                    finish() // Finalizar la instancia actual de la actividad para no volver a ella con el botón de retroceso
+
                 } else {
                     Toast.makeText(this@ProfileActivity, "Error al actualizar datos", Toast.LENGTH_LONG).show()
                 }
@@ -115,6 +120,7 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(this@ProfileActivity, "Fallo al actualizar datos: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
+
     }
 
 

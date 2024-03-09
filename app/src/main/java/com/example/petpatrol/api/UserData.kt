@@ -7,5 +7,5 @@ data class UserData(
     @SerializedName("first_name") val firstName: String,
     @SerializedName("last_name") val lastName: String,
     @SerializedName("phone_number") val phoneNumber: String,
-    @SerializedName("password") val password: String?
+    @SerializedName("password") val password: String
 )

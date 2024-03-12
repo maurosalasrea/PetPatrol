@@ -91,22 +91,36 @@ class AdoptarActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.profile -> {
-                    // Pasar userId a ProfileActivity
-                    val intent = Intent(this, ProfileActivity::class.java).apply {
+                    val intentProfile = Intent(this, ProfileActivity::class.java).apply {
                         putExtra("USER_ID", userId)
                     }
-                    startActivity(intent)
+                    startActivity(intentProfile)
                 }
-                R.id.adoptar -> Unit
-                R.id.add -> startNewActivity(AddActivity::class.java)
-                R.id.alerta -> startNewActivity(AyudarActivity::class.java)
-                R.id.cruzar -> startNewActivity(CruceActivity::class.java)
-                else -> false
+                R.id.adoptar -> Unit // No haces nada porque ya estás en AdoptarActivity.
+                R.id.add -> {
+                    val intentAdd = Intent(this, AddActivity::class.java).apply {
+                        putExtra("USER_ID", userId) // Aquí pasas el userId a AddActivity.
+                    }
+                    startActivity(intentAdd)
+                }
+                R.id.alerta -> {
+                    val intentAyudar = Intent(this, AyudarActivity::class.java).apply {
+                        putExtra("USER_ID", userId) // Aquí pasas el userId a AyudarActivity.
+                    }
+                    startActivity(intentAyudar)
+                }
+                R.id.cruzar -> {
+                    val intentCruzar = Intent(this, CruceActivity::class.java).apply {
+                        putExtra("USER_ID", userId) // Aquí pasas el userId a CruceActivity.
+                    }
+                    startActivity(intentCruzar)
+                }
             }
             true
         }
         bottomNavigation.selectedItemId = R.id.adoptar
     }
+
 
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {

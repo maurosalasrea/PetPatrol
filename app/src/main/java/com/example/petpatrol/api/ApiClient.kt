@@ -1,20 +1,24 @@
 package com.example.petpatrol.api
 
 import com.google.gson.annotations.SerializedName
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 object RetrofitClient {
-    private const val BASE_URL = "http://10.0.2.2:3000"
+//    private const val BASE_URL = "http://10.0.2.2:3000"
 //    private const val BASE_URL = "http://localhost:3000"
-//    private const val BASE_URL = "http://192.168.0.105:3000"
+    private const val BASE_URL = "http://192.168.0.105:3000"
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -49,6 +53,27 @@ interface UserService {
     @POST("/users/register")
     fun registerUser(@Body userData: UserData): Call<ResponseBody>
 
+    @GET("/sizeMascotas")
+    fun getSizeMascotas(): Call<List<SizeMascota>>
+
+    @GET("/sexoMascotas")
+    fun getSexoMascotas(): Call<List<SexoMascota>>
+    @Multipart
+    @POST("/crearMascotaYPost")
+    fun crearMascotaYPost(
+        @Part("name_mascota") nameMascota: RequestBody,
+        @Part("contenido_mascota") contenidoMascota: RequestBody,
+        @Part("id_distrito") idDistrito: RequestBody,
+        @Part("id_edad") idEdad: RequestBody,
+        @Part("id_sexo") idSexo: RequestBody,
+        @Part("id_size") idSize: RequestBody,
+        @Part("id_tipo") idTipo: RequestBody,
+        @Part("user_id") userId: RequestBody,
+        @Part("tipo_post") tipoPost: RequestBody,
+        @Part imagen: MultipartBody.Part
+    ): Call<ResponseBody>
+
+
 }
 data class LoginData(val email_address: String, val password: String)
 
@@ -69,3 +94,24 @@ data class TipoMascotas(
     @SerializedName("nombre_tipo") val NombreTipo: String
 )
 
+data class SizeMascota(
+    @SerializedName("id_size") val idSize: Int,
+    @SerializedName("size_mascota") val descripcion: String
+)
+
+data class SexoMascota(
+    @SerializedName("id_sexo") val idSexo: Int,
+    @SerializedName("sexo_mascota") val descripcion: String // Corregido aquí
+)
+
+data class MascotaPostData(
+    val name_mascota: String,
+    val contenido_mascota: String,
+    val id_distrito: Int,
+    val id_edad: Int,
+    val id_sexo: Int,
+    val id_size: Int,
+    val id_tipo: Int,
+    val user_id: Int,
+    val tipo_post: Int,
+)

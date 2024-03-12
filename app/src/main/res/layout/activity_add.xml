@@ -19,32 +19,29 @@
         android:src="@drawable/logo"
         tools:ignore="RtlSymmetry" />
 
-
-    <LinearLayout
-        android:id="@+id/mainLinearLayout"
+    <RelativeLayout
+        android:id="@+id/mainRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/logoImageView"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:layout_above="@id/bottom_navigation">
 
         <Spinner
             android:id="@+id/spinner6"
             android:layout_width="match_parent"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:textAlignment="center" />
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:id="@+id/nameAndSpinnerContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_below="@id/spinner6">
 
             <EditText
                 android:id="@+id/nameEditText"
@@ -63,23 +60,32 @@
 
         </LinearLayout>
 
-
         <ImageButton
             android:id="@+id/buttonInsertImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/nameAndSpinnerContainer"
             android:background="@drawable/button_border"
             android:contentDescription="@string/add_image"
             android:padding="10dp"
             android:scaleType="center"
             android:src="@drawable/ic_add_image" />
 
+        <ImageView
+            android:id="@+id/selectedImageView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/buttonInsertImage"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_add_image"
+            android:scaleType="centerCrop" />
+
         <EditText
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="2dp"
+            android:layout_height="70dp"
+            android:layout_below="@id/selectedImageView"
+            android:layout_marginTop="10dp"
             android:hint="@string/InserteDescripcion"
             android:inputType="textMultiLine"
             android:maxLines="5"
@@ -88,6 +94,7 @@
         <GridLayout
             android:id="@+id/gridLayout"
             android:layout_width="match_parent"
+            android:layout_below="@id/descriptionEditText"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:columnCount="3"
@@ -115,8 +122,10 @@
 
         <GridLayout
             android:id="@+id/gridLayout2"
+            android:layout_below="@id/gridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:columnCount="1"
             android:padding="8dp"
             android:rowCount="1">
@@ -134,6 +143,7 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/gridLayout2"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/colorLinkText"
             android:text="@string/Publicar"
@@ -143,11 +153,11 @@
             android:id="@+id/todosButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/loginButton"
             android:backgroundTint="@color/black"
             android:text="@string/ver_animales_publicados"
             android:textColor="@color/colorButtonTextColor" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -158,5 +168,4 @@
         app:itemIconTint="@color/black"
         app:itemTextColor="@color/black"
         app:menu="@menu/bottom_navigation_menu" />
-
 </RelativeLayout>

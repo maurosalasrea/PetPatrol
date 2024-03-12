@@ -14,6 +14,7 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 object RetrofitClient {
 //    private const val BASE_URL = "http://10.0.2.2:3000"
@@ -73,8 +74,57 @@ interface UserService {
         @Part imagen: MultipartBody.Part
     ): Call<ResponseBody>
 
+    @GET("/posts")
+    fun getPostsByTipo(@Query("tipo_post") tipoPost: Int): Call<List<Post>>
+
+    @GET("/posts2")
+    fun getPostsByTipo2(@Query("tipo_post") tipoPost: Int): Call<List<Post>>
+
+    @GET("/posts3")
+    fun getPostsByTipo3(@Query("tipo_post") tipoPost: Int): Call<List<Post>>
+
+    @POST("/filtrarMascotas")
+    fun filtrarMascotas(@Body filtro: FiltroMascotas): Call<List<MascotaFiltrada>>
 
 }
+
+data class MascotaFiltrada(
+    val id_mascota: Int,
+    val name_mascota: String,
+    val contenido_mascota: String,
+    val id_post: Int,
+    val id_distrito: Int,
+    val id_edad: Int,
+    val id_sexo: Int,
+    val id_size: Int,
+    val id_tipo: Int,
+    val fecha_post: String,
+    val imageUrl: String
+)
+data class FiltroMascotas(
+    val id_distrito: Int?,
+    val id_edad: Int?,
+    val id_sexo: Int?,
+    val id_size: Int?,
+    val id_tipo: Int?
+)
+data class Post(
+    val fch_post: String,
+    val id_post: Int,
+    val user_id: Int,
+    val id_mascota: Int,
+    val tipo_post: Int,
+    val name_mascota: String, // Asegúrate de tener este campo
+    val contenido_mascota: String,
+    val id_distrito: Int,
+    val id_edad: Int,
+    val id_tipo: Int,
+    val id_sexo: Int,
+    val id_size: Int,
+    val imageUrl: String // URL de la imagen calculada en el servidor
+)
+
+
 data class LoginData(val email_address: String, val password: String)
 
 data class TipoPost(

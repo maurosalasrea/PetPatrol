@@ -28,6 +28,7 @@ import com.example.petpatrol.api.SizeMascota
 import com.example.petpatrol.api.TipoMascotas
 import com.example.petpatrol.api.TipoPost
 import com.example.petpatrol.api.UserService
+import com.example.petpatrol.api.Users
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -72,6 +73,8 @@ class AddActivity : AppCompatActivity() {
     private var tiposPost: List<TipoPost> = emptyList()
     private var selectedTipoPostId: Int = -1
 
+    private var users: List<Users> = emptyList()
+    private var selectedUser: Int = 1
     companion object {
         private const val PICK_IMAGE_REQUEST = 1
         private const val STORAGE_PERMISSION_CODE = 1
@@ -86,6 +89,33 @@ class AddActivity : AppCompatActivity() {
         initUI()
         setupListeners()
     }
+
+    private fun resetPage() {
+        // Restablece los EditText a cadenas vacías
+        nameEditText.text.clear()
+        descriptionEditText.text.clear()
+
+        // Restablece la imagen predeterminada o quita la imagen seleccionada
+        imageView.setImageResource(R.drawable.ic_add_image) // Asume que tienes un placeholder predeterminado
+        imageUri = null
+
+        // Restablece los spinners al primer elemento
+        spinnerTipoPost.setSelection(0)
+        spinnerTipoMascota.setSelection(0)
+        spinnerEdadMascota.setSelection(0)
+        spinnerSizeMascota.setSelection(0)
+        spinnerSexoMascota.setSelection(0)
+        spinnerDistrito.setSelection(0)
+
+        // Restablece las variables de ID seleccionadas
+        selectedDistritoId = -1
+        selectedEdadMascotaId = -1
+        selectedSexoMascotaId = -1
+        selectedSizeMascotaId = -1
+        selectedTipoMascotaId = -1
+        selectedTipoPostId = -1
+    }
+
 
     private fun initUI() {
         imageView = findViewById(R.id.selectedImageView)
@@ -161,7 +191,7 @@ class AddActivity : AppCompatActivity() {
         val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
         val imagePart = MultipartBody.Part.createFormData("imagen", file.name, requestBody)
 
-        if (selectedDistritoId == -1 || selectedEdadMascotaId == -1 || selectedSexoMascotaId == -1 || selectedSizeMascotaId == -1 || selectedTipoMascotaId == -1 || selectedTipoPostId == -1) {
+        if (selectedDistritoId == -1 || selectedEdadMascotaId == -1 || selectedSexoMascotaId == -1 || selectedSizeMascotaId == -1 || selectedTipoMascotaId == -1 || selectedTipoPostId == -1 || selectedUser == -1) {
             Toast.makeText(this, "Por favor, asegúrate de seleccionar todas las opciones requeridas.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -175,10 +205,8 @@ class AddActivity : AppCompatActivity() {
         val size = RequestBody.create("text/plain".toMediaTypeOrNull(), selectedSizeMascotaId.toString())
         val tipo = RequestBody.create("text/plain".toMediaTypeOrNull(), selectedTipoMascotaId.toString())
         val tipoPost = RequestBody.create("text/plain".toMediaTypeOrNull(), selectedTipoPostId.toString())
-        // Asegúrate de tener el userId disponible como variable o de otra fuente
-        val userIdRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), userId.toString())
+        val userIdRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), selectedUser.toString()) // Utiliza selectedUser
 
-        Log.d("AddActivity", "ID de distrito seleccionado: $distrito")
         // Realizar la llamada a tu API
         val service = RetrofitClient.createService(UserService::class.java)
         val call = service.crearMascotaYPost(
@@ -198,6 +226,7 @@ class AddActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@AddActivity, "Mascota y post creados exitosamente.", Toast.LENGTH_SHORT).show()
+                    resetPage() // Restablece la página después de una publicación exitosa
                 } else {
                     Toast.makeText(this@AddActivity, "Error en la creación: ${response.message()}", Toast.LENGTH_LONG).show()
                 }
@@ -208,6 +237,7 @@ class AddActivity : AppCompatActivity() {
             }
         })
     }
+
 
     private fun checkAndRequestPermissions(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -223,7 +253,6 @@ class AddActivity : AppCompatActivity() {
         }
         return true
     }
-
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -333,7 +362,6 @@ class AddActivity : AppCompatActivity() {
         })
     }
 
-
     private fun fetchTipoMascotas() {
         val service = RetrofitClient.createService(UserService::class.java)
         service.getTipoMascotas().enqueue(object : Callback<List<TipoMascotas>> {
@@ -365,7 +393,6 @@ class AddActivity : AppCompatActivity() {
         })
     }
 
-
     private fun fetchEdadMascotas() {
         val service = RetrofitClient.createService(UserService::class.java)
         service.getEdadMascotas().enqueue(object : Callback<List<EdadMascotas>> {
@@ -396,7 +423,6 @@ class AddActivity : AppCompatActivity() {
             }
         })
     }
-
 
     private fun fetchDistritos() {
         val service = RetrofitClient.createService(UserService::class.java)
@@ -465,7 +491,6 @@ class AddActivity : AppCompatActivity() {
         }
         bottomNavigation.selectedItemId = R.id.add
     }
-
 
     private fun startNewActivity(activity: Class<*>) {
         val intent = Intent(this, activity)

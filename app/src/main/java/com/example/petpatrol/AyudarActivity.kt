@@ -49,7 +49,7 @@ class AyudarActivity : AppCompatActivity() {
     private fun loadFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AdoptarFragment())
+                .replace(R.id.fragment_container, AyudarFragment())
                 .commit()
         }
     }

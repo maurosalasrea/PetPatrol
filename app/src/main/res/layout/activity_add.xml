@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/logoImageView"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
@@ -32,14 +32,16 @@
 
         <Spinner
             android:id="@+id/spinner6"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:id="@+id/nameAndSpinnerContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_below="@id/spinner6">
 
@@ -47,37 +49,40 @@
                 android:id="@+id/nameEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:hint="@string/InserteNombre"
                 android:inputType="textPersonName"
                 android:textAlignment="center" />
 
             <Spinner
                 android:id="@+id/spinner1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
                 android:layout_marginBottom="20dp" />
 
+            <ImageButton
+                android:id="@+id/buttonInsertImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/add_image"
+                android:padding="10dp"
+                android:src="@drawable/ic_add_image" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/buttonInsertImage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/nameAndSpinnerContainer"
-            android:background="@drawable/button_border"
-            android:contentDescription="@string/add_image"
-            android:padding="10dp"
-            android:scaleType="center"
-            android:src="@drawable/ic_add_image" />
 
         <ImageView
             android:id="@+id/selectedImageView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/buttonInsertImage"
+            android:layout_height="140dp"
+            android:padding="10dp"
+            android:foregroundGravity="center"
+            android:background="@drawable/button_border"
+            android:layout_below="@id/nameAndSpinnerContainer"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_add_image"
+            android:src="@drawable/ic_add_image_white"
             android:scaleType="centerCrop" />
 
         <EditText

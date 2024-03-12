@@ -1,5 +1,6 @@
 package com.example.petpatrol
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,39 +16,38 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AdoptarFragment : Fragment() {
+class AyudarFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private var adapter: AdoptarAdapter = AdoptarAdapter(mutableListOf())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.adoptar_fragment, container, false)
-        recyclerView = view.findViewById(R.id.rvPerritos)
+        val view = inflater.inflate(R.layout.ayudar_fragment, container, false)
+        recyclerView = view.findViewById(R.id.rvAyudar)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter // Asigna el adaptador al RecyclerView
 
-        cargarPostsTipoAdoptar()
+        cargarPostsTipoAyudar()
 
         return view
     }
 
-    private fun cargarPostsTipoAdoptar() {
-        RetrofitClient.createService(UserService::class.java).getPostsByTipo(1).enqueue(object : Callback<List<Post>> {
+    private fun cargarPostsTipoAyudar() {
+        RetrofitClient.createService(UserService::class.java).getPostsByTipo2(2).enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 if (response.isSuccessful) {
                     // Actualiza los datos del adaptador con la respuesta
                     adapter.updateData(response.body() ?: emptyList())
-                    Log.d("AdoptarFragment", "Posts cargados correctamente")
+                    Log.d("AyudarFragment", "Posts cargados correctamente")
                 } else {
-                    Log.e("AdoptarFragment", "Error al obtener los posts: ${response.errorBody()?.string()}")
+                    Log.e("AyudarFragment", "Error al obtener los posts: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                Log.e("AdoptarFragment", "Fallo al obtener los posts", t)
+                Log.e("AyudarFragment", "Fallo al obtener los posts", t)
             }
         })
     }
 
 }
-

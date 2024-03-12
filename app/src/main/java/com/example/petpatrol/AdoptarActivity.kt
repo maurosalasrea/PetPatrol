@@ -29,13 +29,14 @@ class AdoptarActivity : AppCompatActivity() {
         userId = intent.getIntExtra("USER_ID", 0)
         Log.d("AdoptarActivity", "User ID obtenido: $userId")
 
+        // Agregar un log para verificar si los datos están siendo recibidos correctamente desde la API
+        Log.d("AdoptarActivity", "Datos recibidos desde la API: <AQUÍ TUS DATOS RECIBIDOS>")
+
         drawerLayout = findViewById(R.id.drawer_layout) // Asegúrate de tener un ID correspondiente en tu layout
         setupFilterButton()
         loadFragment(savedInstanceState)
         setupButtons()
         setupBottomNavigation()
-
-
     }
 
     private fun startNewActivity(activity: Class<*>) {

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Gato" />
+        android:text="Perro" />
 
     <CheckBox
         android:id="@+id/checkbox_option2"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Perro" />
+        android:text="Gato" />
 
     <CheckBox
         android:id="@+id/checkbox_option3"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Adulto" />
+        android:text="Joven" />
 
     <CheckBox
         android:id="@+id/checkbox_option03"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Mayor" />
+        android:text="Adulto" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Punchana" />
+        android:text="Belen" />
 
     <CheckBox
         android:id="@+id/checkbox_option53"
@@ -166,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-10dp"
-        android:text="Belen"/>
+        android:text="Punchana"/>
 
     <CheckBox
         android:id="@+id/checkbox_option54"

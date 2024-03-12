@@ -19,7 +19,7 @@ class CruceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ayudar)
+        setContentView(R.layout.activity_cruce)
 
         setupFilterButton()
         loadFragment(savedInstanceState)
@@ -50,7 +50,7 @@ class CruceActivity : AppCompatActivity() {
     private fun loadFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, AdoptarFragment())
+                .replace(R.id.fragment_container, CruceFragment())
                 .commit()
         }
     }

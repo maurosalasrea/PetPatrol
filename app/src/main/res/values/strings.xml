@@ -35,7 +35,7 @@
     <string name="todo">TODO</string>
     <string name="publicar">Publicar</string>
     <string name="filtrar">Filtrar</string>
-    <string name="InserteDescripcion">Inserte Descripcion</string>
+    <string name="InserteDescripcion">Inserte descripción y número de contactoo</string>
     <string name="InserteNombre">Inserte Nombre</string>
     <string name="Publicar">Publicar</string>
     <string name="back">Regresar a Login</string>
